@@ -1,0 +1,702 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>LeetCode总结笔记 | 阳阳小屋</title><meta name="author" content="火星架构师"><meta name="copyright" content="火星架构师"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Java解题技巧和数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode总结笔记">
+<meta property="og:url" content="https://wryit.fun/2022/11/15/LeetCode%E6%80%BB%E7%BB%93%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="阳阳小屋">
+<meta property="og:description" content="Java解题技巧和数据结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wryit.fun/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg">
+<meta property="article:published_time" content="2022-11-15T14:46:47.000Z">
+<meta property="article:modified_time" content="2022-11-15T14:46:47.000Z">
+<meta property="article:author" content="火星架构师">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wryit.fun/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="https://wryit.fun/2022/11/15/LeetCode%E6%80%BB%E7%BB%93%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":250},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 火星架构师","link":"链接: ","source":"来源: 阳阳小屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LeetCode总结笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-15 14:46:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="//at.alicdn.com/t/c/font_3880675_w3xksiojrkh.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><span id="fps"></span><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="icon faa-tada" aria-hidden="true">   <use xlink:href="#icon-daxue"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wangye"></use></svg><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang">                   </use></svg><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-biaoji">                   </use></svg><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-chuansong">                   </use></svg><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shijie">                   </use></svg><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-nanshi"></use></svg><span> 个人</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/personal/love/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-prompt">                   </use></svg><span> 恋爱</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/personal/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-star">                   </use></svg><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="阳阳小屋"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg"/><span class="site-name">阳阳小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="icon faa-tada" aria-hidden="true">   <use xlink:href="#icon-daxue"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wangye"></use></svg><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang">                   </use></svg><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-biaoji">                   </use></svg><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-chuansong">                   </use></svg><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shijie">                   </use></svg><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-nanshi"></use></svg><span> 个人</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/personal/love/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-prompt">                   </use></svg><span> 恋爱</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/personal/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-star">                   </use></svg><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LeetCode总结笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-15T14:46:47.000Z" title="发表于 2022-11-15 14:46:47">2022-11-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-15T14:46:47.000Z" title="更新于 2022-11-15 14:46:47">2022-11-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LeetCode/">LeetCode</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LeetCode总结笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="初始化">初始化</h1>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String[] s = <span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">3</span>];    <span class="comment">//初始化为null</span></span><br><span class="line"><span class="type">int</span>[] i = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];          <span class="comment">//初始化为0</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">b</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">3</span>];    <span class="comment">//初始化为false</span></span><br></pre></td></tr></table></figure>
+<h1 id="字符">字符</h1>
+<h2 id="char">char</h2>
+<h4 id="相等操作">相等操作</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c1 == c2;</span><br></pre></td></tr></table></figure>
+<h2 id="string">string</h2>
+<h3 id="常用函数">常用函数</h3>
+<h4 id="判断字符是否包含在字符串中">判断字符是否包含在字符串中</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.indexOf(c) != -<span class="number">1</span>     <span class="comment">//表示包含</span></span><br></pre></td></tr></table></figure>
+<h4 id="判断字符串是否包含在字符串中">判断字符串是否包含在字符串中</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s1.contains(s2)      <span class="comment">//如果s2包含在s1中，则返回true</span></span><br></pre></td></tr></table></figure>
+<h4 id="compareto比较">compareTo()比较</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s1.compareTo(s2);    <span class="comment">//如果s1&gt;s2，返回1；如果s1&lt;s2，返回-1；如果相等，返回0</span></span><br></pre></td></tr></table></figure>
+<h4 id="substring截断">substring()截断：</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = s.substring(<span class="number">1</span>,<span class="number">5</span>);    <span class="comment">//截取下标1~4</span></span><br><span class="line"></span><br><span class="line">s = s.substring(<span class="number">5</span>);   <span class="comment">//截取下标为5~end</span></span><br></pre></td></tr></table></figure>
+<h4 id="replace替换">replace()替换</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = s.replace(<span class="string">&quot;-&quot;</span>,<span class="string">&quot;&quot;</span>);    <span class="comment">//将全文的-变成无</span></span><br></pre></td></tr></table></figure>
+<h4 id="equals相等">equals()相等</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s1.equals(s2);</span><br></pre></td></tr></table></figure>
+<h4 id="split分割">split()分割</h4>
+<blockquote>
+<p>对于<code>String s = "a  b     c  d e f      g"</code></p>
+</blockquote>
+<h5 id="分割单个空格">分割单个空格</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] sa = s.split(<span class="string">&quot; &quot;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>//a // //b // // // // //c // //d //e //f // // // // // //g //</p>
+</blockquote>
+<h5 id="分割多个连续空格">分割多个连续空格</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] sa = s.split(<span class="string">&quot;\\s+&quot;</span>);    <span class="comment">//正则</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>//a //b //c //d //e //f //g</p>
+</blockquote>
+<h2 id="常用转换">常用转换</h2>
+<h3 id="字符字符串">字符➡️字符串</h3>
+<h4 id="将单个字符转为字符串">将单个字符转为字符串</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">st</span> <span class="operator">=</span> String.valueOf(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="将字符数组转为字符串">将字符数组转为字符串</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> String.valueOf(sa1);</span><br></pre></td></tr></table></figure>
+<h3 id="字符串字符">字符串➡️字符</h3>
+<h4 id="提取完整数组">提取完整数组</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>[] str = s.toCharArray();</span><br></pre></td></tr></table></figure>
+<h4 id="提取字符串中某一下标的字符">提取字符串中某一下标的字符</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> <span class="variable">st</span> <span class="operator">=</span> s.charAt(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="字符整数">字符➡️整数</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="string">&#x27;5&#x27;</span> - <span class="string">&#x27;0&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="字符串整数">字符串➡️整数</h3>
+<p>使用<code>Integer.parseInt(s)</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;12345&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> Integer.parseInt(s);</span><br></pre></td></tr></table></figure>
+<h2 id="stringbuilder">StringBuilder</h2>
+<blockquote>
+<p>String内容是不可变的，StringBuilder内容是可变的</p>
+<p>StringBuilder处理字符串性能比String好</p>
+</blockquote>
+<h3 id="创建">创建</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="插入">插入</h3>
+<h4 id="尾部插入">尾部插入</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sb.append(<span class="string">&quot;wry&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="中间插入">中间插入</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sb.insert(<span class="number">0</span>,<span class="string">&#x27;w&#x27;</span>);    <span class="comment">//在下标为0之前插入字符w</span></span><br></pre></td></tr></table></figure>
+<h3 id="长度">长度</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> sb.length();</span><br></pre></td></tr></table></figure>
+<h3 id="删除">删除</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sb.delete(<span class="number">6</span>, <span class="number">14</span>);    <span class="comment">//删除下标为[6,14)</span></span><br></pre></td></tr></table></figure>
+<h3 id="转换">转换</h3>
+<h4 id="stringbuilder转为string">StringBuilder转为String</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sb.toString();</span><br></pre></td></tr></table></figure>
+<h4 id="string转为stringbuilder">String转为StringBuilder</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(s);</span><br></pre></td></tr></table></figure>
+<h1 id="数组">数组</h1>
+<h2 id="自定义排序">自定义排序</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(logs, <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;<span class="type">int</span>[]&gt;() &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(<span class="type">int</span>[] l1, <span class="type">int</span>[] l2)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> l1[<span class="number">0</span>]-l2[<span class="number">0</span>];    <span class="comment">//结果为1表示l1和l2调换</span></span><br><span class="line">	&#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="拷贝">拷贝</h2>
+<h3 id="深拷贝">深拷贝</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.arraycopy(原数组, 原数组起点, 新数组, 新数组起点, 长度);</span><br></pre></td></tr></table></figure>
+<h1 id="list">list</h1>
+<blockquote>
+<p>List本质上就是动态数组</p>
+</blockquote>
+<h2 id="构建">构建</h2>
+<h3 id="对于单个list">对于单个List</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; r = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不推荐 <code>ArrayList&lt;String&gt; al = new ArrayList&lt;String&gt;();</code></p>
+</blockquote>
+<h3 id="对于嵌套list">对于嵌套List</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;String&gt;&gt; ll = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;List&lt;Integer&gt;&gt;();</span><br></pre></td></tr></table></figure>
+<h2 id="添加">添加</h2>
+<h4 id="对于单个list-1">对于单个List</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list1.add(r);    <span class="comment">//r必须是list的&lt;&gt;内的类型，在尾部插入</span></span><br></pre></td></tr></table></figure>
+<h4 id="对于嵌套list-1">对于嵌套List</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(path));</span><br></pre></td></tr></table></figure>
+<h2 id="搜索">搜索</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list1.get(index);    <span class="comment">//获取list下标为index的数值</span></span><br></pre></td></tr></table></figure>
+<h2 id="查找某个元素是否在其中">查找某个元素是否在其中</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.contains(s);    <span class="comment">//查找s这个元素是否在list中</span></span><br></pre></td></tr></table></figure>
+<h2 id="数组list">数组➡️List</h2>
+<p><code>Arrays. asList</code> 将数组转化成 List 集合，但是得到的 List 的长度是不可改变的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.add(Arrays.asList(x,y));        <span class="comment">//在嵌套list（res）中加入一个由x、y两个元素构成的list</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：<br />
+（1）该方法适用于对象型数据的数组（String、Integer...）<br />
+（2）该方法不建议使用于基本数据类型的数组（byte, short, int, long, float, double, boolean）<br />
+（3）该方法将数组与 List 列表链接起来：当更新其一个时，另一个自动更新<br />
+（4）不支持 add ()、remove ()、clear () 等方法</p>
+</blockquote>
+<h1 id="动态数组-arraylist">动态数组 ArrayList</h1>
+<h2 id="构建-1">构建</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; al = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br></pre></td></tr></table></figure>
+<h2 id="添加-1">添加</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">al.add(<span class="number">2</span>);    <span class="comment">//将整数2加入动态数组</span></span><br></pre></td></tr></table></figure>
+<h2 id="定点添加">定点添加</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">al.add(<span class="number">2</span>,<span class="number">1</span>);  <span class="comment">//将整数2加入动态数组的1的位置（作为第二个元素）</span></span><br></pre></td></tr></table></figure>
+<h2 id="删除-1">删除</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">al.remove(<span class="number">1</span>);     <span class="comment">//删掉第二个元素</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出">输出</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = al.get(<span class="number">1</span>);   <span class="comment">//获取下标为1的元素的值</span></span><br></pre></td></tr></table></figure>
+<h2 id="长度-1">长度</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> al.size();</span><br></pre></td></tr></table></figure>
+<h2 id="排序">排序</h2>
+<h3 id="升序排序从小到大">升序排序（从小到大）</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(list);</span><br></pre></td></tr></table></figure>
+<h3 id="降序排序从大到小">降序排序（从大到小）🌟</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(list, <span class="keyword">new</span> <span class="title class_">Comprator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer n1, Integer n2)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> n2-n1;     <span class="comment">//如果return&gt;0则对调</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="deque双端队列">Deque双端队列</h1>
+<p>两端都可以进出，FIFO（先进先出）</p>
+<h2 id="构造">构造</h2>
+<p>注意：ArrayDeque&lt;&gt;比 LinkedList 更快<a target="_blank" rel="noopener" href="https://leetcode.cn/circle/article/bXc4tx/">力扣</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Integer&gt; dq = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<h2 id="操作">操作</h2>
+<p>端队列的开头移除元素。从 Queue 接口继承的方法完全等效于 Deque 方法，如下表所示：</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>第一个元素 (头部)</th>
+<th></th>
+<th>最后一个元素 (尾部)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>抛出异常</td>
+<td>特殊值</td>
+<td>抛出异常</td>
+<td>特殊值</td>
+</tr>
+<tr class="even">
+<td>插入</td>
+<td>addFirst(e)</td>
+<td>offerFirst(e)</td>
+<td>addLast(e)</td>
+<td>offerLast(e)</td>
+</tr>
+<tr class="odd">
+<td>删除</td>
+<td>removeFirst()</td>
+<td>pollFirst()</td>
+<td>removeLast()</td>
+<td>pollLast()</td>
+</tr>
+<tr class="even">
+<td>检查</td>
+<td>getFirst()</td>
+<td>peekFirst()</td>
+<td>getLast()</td>
+<td>peekLast()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="deque与queue的对照">Deque与Queue的对照</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Queue方法</th>
+<th>等效Deque方法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>add(e)</td>
+<td>addLast(e)</td>
+</tr>
+<tr class="even">
+<td>offer(e)</td>
+<td>offerLast(e)</td>
+</tr>
+<tr class="odd">
+<td>remove()</td>
+<td>removeFirst()</td>
+</tr>
+<tr class="even">
+<td>poll()</td>
+<td>pollFirst()</td>
+</tr>
+<tr class="odd">
+<td>element()</td>
+<td>getFirst()</td>
+</tr>
+<tr class="even">
+<td>peek()</td>
+<td>peekFirst()</td>
+</tr>
+</tbody>
+</table>
+<p>在将双端队列用作堆栈时，元素被推入双端队列的开头并从双端队列开头弹出。堆栈方法完全等效于 Deque 方法，如下表所示：</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>堆栈方法</strong></th>
+<th><strong>等效Deque方法</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>push(e)</td>
+<td>addFirst(e)</td>
+</tr>
+<tr class="even">
+<td>pop()</td>
+<td>removeFirst()</td>
+</tr>
+<tr class="odd">
+<td>peek()</td>
+<td>peekFirst()</td>
+</tr>
+</tbody>
+</table>
+<p><strong>但是Java没有栈，只能用Deque双端队列代替。</strong></p>
+<p>需要多次使用的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建</span></span><br><span class="line">Deque&lt;String&gt; dq = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//增加</span></span><br><span class="line">dq.addLast(st);</span><br><span class="line"></span><br><span class="line"><span class="comment">//弹出并返回</span></span><br><span class="line"><span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> dq.pollLast();</span><br></pre></td></tr></table></figure>
+<h1 id="stream流">Stream流</h1>
+<p>Stream流是Java8开始有的一个很装逼的功能，可以对流直接进行操作。</p>
+<p><a href="LeetCode逐题笔记.md#46、全排列">46</a>使用了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="type">int</span>[] nums;</span><br><span class="line"></span><br><span class="line">res.add(Arrays.stream(nums).boxed().collect(Collectors.toList()));</span><br></pre></td></tr></table></figure>
+<p>请注意，这里的res存的时Integer的集合(列表)，但是num时int类型的，曾经说到过int转为Integer可以用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">b</span> <span class="operator">=</span> Integer.valueOf(a);</span><br></pre></td></tr></table></figure>
+<p>但是这个方法很不好，而Java8的流操作可以处理：</p>
+<ol type="1">
+<li><code>Arrays.stream(nums)</code>表示将数组nums转为流</li>
+<li><code>.boxed()</code>表示将流的类型提升，比如int变成Integer等等</li>
+<li><code>.collect(Collectors.toList())</code>基本是流操作必备的结尾，表示将流转为List集合类型</li>
+</ol>
+<p>此外，流操作还有很多其他的用法：</p>
+<p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1738098020923007265&amp;wfr=spider&amp;for=pc">全面吃透JAVA Stream流操作，让代码更加的优雅 (baidu.com)</a></p>
+<ul>
+<li><p><strong>开始管道</strong></p>
+<p>主要负责新建一个Stream流，或者基于现有的数组、List、Set、Map等集合类型对象创建出新的Stream流。</p></li>
+</ul>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302041633685.jpeg" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<ul>
+<li><p><strong>中间管道</strong>⭐</p>
+<p>负责对Stream进行处理操作，并返回一个新的Stream对象，中间管道操作可以进行<strong>叠加</strong>。</p></li>
+</ul>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302041633686.jpeg" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<ul>
+<li><p><strong>终止管道</strong></p>
+<p>顾名思义，通过终止管道操作之后，Stream流将<strong>会结束</strong>，最后可能会执行某些逻辑处理，或者是按照要求返回某些执行后的结果数据。</p></li>
+</ul>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302041633687.jpeg" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h2 id="数组转为-list">数组转为 list</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.stream(nums).boxed().collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h1 id="链表">链表</h1>
+<p>Java语言使用链表格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyLinkedList</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        <span class="type">int</span> val;</span><br><span class="line">        Node pre;</span><br><span class="line">        Node next;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">()</span> &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.val = val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Node head;</span><br><span class="line">    <span class="type">int</span> size=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyLinkedList</span><span class="params">()</span> &#123;</span><br><span class="line">        head = <span class="keyword">new</span> <span class="title class_">Node</span>();</span><br><span class="line">        head.next = head;</span><br><span class="line">        head.pre = head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="comment">//......</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//......</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line"><span class="type">MyLinkedList</span> <span class="variable">linkedList</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">linkedList.get(<span class="number">1</span>);    </span><br></pre></td></tr></table></figure>
+<h1 id="hashmap散列表">HashMap（散列表）</h1>
+<h2 id="创建-1">创建</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;String,Integer&gt; hash = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String,Integer&gt;();</span><br></pre></td></tr></table></figure>
+<h2 id="添加键值对">添加键值对</h2>
+<p>key 如果已经存在，则 value 会直接覆盖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.put(<span class="string">&quot;abc&quot;</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="删除键值对">删除键值对</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.remove(<span class="string">&quot;abc&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="查找值">查找值</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.get(<span class="string">&quot;abc&quot;</span>);    <span class="comment">//输出2</span></span><br></pre></td></tr></table></figure>
+<h2 id="更新值">更新值</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.replace(<span class="string">&quot;abc&quot;</span>,<span class="number">3</span>);    <span class="comment">//以后hash里面&quot;abc&quot;对应的value就是3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.replace(<span class="string">&quot;abc&quot;</span>,<span class="number">2</span>,<span class="number">3</span>);    <span class="comment">//只对hash键值对为&quot;abc&quot;-2的修改value为3，如果键值对不符合则返回false</span></span><br></pre></td></tr></table></figure>
+<h2 id="查找键值对数量">查找键值对数量</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.size()</span><br></pre></td></tr></table></figure>
+<h2 id="判断是否为空">判断是否为空</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.isEmpty()    <span class="comment">//如果为空返回true</span></span><br></pre></td></tr></table></figure>
+<h2 id="判断是否有某个key">判断是否有某个key</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.containsKey(<span class="string">&quot;abc&quot;</span>)    <span class="comment">//如果有则返回true</span></span><br></pre></td></tr></table></figure>
+<h2 id="判断是否有某个value">判断是否有某个value</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.containsValue(<span class="number">3</span>)    <span class="comment">//如果有则返回true</span></span><br></pre></td></tr></table></figure>
+<h2 id="遍历">遍历</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一、forEach</span></span><br><span class="line">hash.forEach((key,value)-&gt; &#123;</span><br><span class="line">    <span class="comment">//对于每一组key和value的操作</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> value.toString() + key;</span><br><span class="line">    res.add(s);</span><br><span class="line">&#125;);    <span class="comment">//不要忘记分号</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法二、最推荐，遍历entey获取key和value</span></span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String,Integer&gt; entry : hash.entrySet()) &#123;  <span class="comment">//entrySet()返回hashMap中所有映射项的集合集合视图。</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> entry.getKey();</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">value</span> <span class="operator">=</span> entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法三、单独取出key和value</span></span><br><span class="line"><span class="keyword">for</span> (String key : hash.KeySet()) &#123;    <span class="comment">//keySet()返回hashMap中所有key组成的集合视图。</span></span><br><span class="line">    <span class="comment">//对key操作</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (String value : hash.values()) &#123;    <span class="comment">//values()返回hashMap中所有value组成的集合视图。</span></span><br><span class="line">    <span class="comment">//对key操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="删除所有键值对">删除所有键值对</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.clear();</span><br></pre></td></tr></table></figure>
+<h2 id="获取指定-key-对应对-value如果找不到-key-则返回设置的默认值">获取指定 key 对应对 value，如果找不到 key ，则返回设置的默认值</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value = hash.getOrDefault(key,defaultvalue);     <span class="comment">//如果key存在，则相当于get()；如果key不存在，则返回的是defaultvalue</span></span><br></pre></td></tr></table></figure>
+<h2 id="如果-key-存在则将原始值1如果-key-不存在则加入value-设置为-1">🌟如果 key 存在，则将原始值+1；如果 key 不存在，则加入（value 设置为 1）</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash.put(key, hash.getOrDefault(key,<span class="number">0</span>)+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="set-集合">Set 集合</h1>
+<p>Set 表示唯一对象的集合。集合中元素的排序是不相关的。</p>
+<h4 id="hashset">HashSet</h4>
+<p>HashSet 基于 HashMap 来实现的，是一个<strong>不允许有重复元素的集合</strong>。</p>
+<p>HashSet 允许有 null 值。</p>
+<p>HashSet <strong>是无序的，即不会记录插入的顺序</strong>。</p>
+<p>HashSet 实现了 Set 接口。（这就是为什么这个解法可以使用 <code>Set&lt;Long&gt; set = new HashSet&lt;&gt;();</code>）</p>
+<p>Set 对象的创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Long&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>Set 对象的添加操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.add(<span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+<p>Set 对象的判断是否存在操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.contains(k)     <span class="comment">//判断k这个值在set中是否存在，存在则返回true</span></span><br></pre></td></tr></table></figure>
+<p>Set 判断一个 set 集合是否包含在另一个集合中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set1.containsAll(set2)     <span class="comment">//set2是否是set1的子集</span></span><br></pre></td></tr></table></figure>
+<p>合并 set</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set1.addAll(set2);     <span class="comment">// 将set2中的所有元素加入set1中</span></span><br></pre></td></tr></table></figure>
+<p>Set 清空功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.clear();</span><br></pre></td></tr></table></figure>
+<h1 id="小根堆">小根堆</h1>
+<h2 id="创建-2">创建：</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PriorityQueue&lt;Long&gt; q = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<h2 id="添加操作">添加操作：</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.add(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="判断是否为空-1">判断是否为空：</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.isEmpty()    <span class="comment">//如果是空则返回true</span></span><br></pre></td></tr></table></figure>
+<h2 id="弹出操作弹出最小的数并返回此数">弹出操作（弹出最小的数，并返回此数）：</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="variable">t</span> <span class="operator">=</span> q.poll();</span><br></pre></td></tr></table></figure>
+<h1 id="大根堆">大根堆</h1>
+<h2 id="创建-3">创建</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果b&gt;a，则返回正值，表示顺序要替换</span></span><br><span class="line">PriorityQueue&lt;Integer&gt; q = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;Integer&gt;((a,b)-&gt;b-a);    </span><br></pre></td></tr></table></figure>
+<h2 id="复杂构建">复杂构建</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果a[1]-a[0]大的放在根节点</span></span><br><span class="line">PriorityQueue&lt;<span class="type">int</span>[]&gt; q = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;<span class="type">int</span>[]&gt;((a,b)-&gt;&#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> a[<span class="number">1</span>]-a[<span class="number">0</span>];</span><br><span class="line">	<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> b[<span class="number">1</span>]-b[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">return</span> y-x;   </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="添加-2">添加</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">q.add(<span class="number">5</span>);</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">q.offer(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="弹出">弹出</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.poll();    <span class="comment">//弹出最大（最小）的元素</span></span><br></pre></td></tr></table></figure>
+<h1 id="长度函数">长度函数</h1>
+<ol type="1">
+<li><p><code>length</code>：<strong>数组</strong>长度</p></li>
+<li><p><code>length()</code>：<strong>字符串</strong>长度</p></li>
+<li><p><code>size()</code>：<strong>列表</strong>长度</p></li>
+<li><p>int转为Integer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">b</span> <span class="operator">=</span> Integer.valueOf(a);</span><br></pre></td></tr></table></figure></li>
+<li><p>数组的排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(nums);     <span class="comment">//原地修改nums数组</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="位运算">位运算</h1>
+<table>
+<thead>
+<tr class="header">
+<th>操作符</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>＆</td>
+<td>如果相对应位都是 1，则结果为 1，否则为 0</td>
+<td>（A＆B），得到 12，即 00001100</td>
+</tr>
+<tr class="even">
+<td>|</td>
+<td>如果相对应位都是 0，则结果为 0，否则为 1</td>
+<td>（A|B）得到 61，即 00111101</td>
+</tr>
+<tr class="odd">
+<td>^</td>
+<td>如果相对应位值相同，则结果为 0，否则为 1</td>
+<td>（A^B）得到 49，即 00110001</td>
+</tr>
+<tr class="even">
+<td>〜</td>
+<td>按位取反运算符翻转操作数的每一位，即 0 变成 1，1 变成 0。</td>
+<td>（〜A）得到-61，即 11000011</td>
+</tr>
+<tr class="odd">
+<td>&lt;&lt;</td>
+<td>按位左移运算符。左操作数按位左移右操作数指定的位数。</td>
+<td>A&lt;&lt;2 得到 240，即 11110000</td>
+</tr>
+<tr class="even">
+<td>&gt;&gt;</td>
+<td>按位右移运算符。左操作数按位右移右操作数指定的位数。</td>
+<td>A&gt;&gt;2 得到 15 即 1111</td>
+</tr>
+<tr class="odd">
+<td>&gt;&gt;&gt;</td>
+<td>按位右移补零操作符。左操作数的值按右操作数指定的位数右移，移动得到的空位以零填充。</td>
+<td>A&gt;&gt;&gt;2 得到 15 即 00001111</td>
+</tr>
+</tbody>
+</table>
+<h1 id="并查集">并查集</h1>
+<p>模板题： <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-if-path-exists-in-graph/description/">#1971</a></p>
+<p><strong>模板代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">```java</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">find</span><span class="params">(<span class="type">int</span>[] bc, <span class="type">int</span> x)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (bc[x]!=x) &#123;   </span><br><span class="line">            bc[x] = find(bc,bc[x]);   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> bc[x];    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">union</span><span class="params">(<span class="type">int</span>[] bc, <span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;</span><br><span class="line">	    <span class="type">int</span> <span class="variable">rootx</span> <span class="operator">=</span> find(bc,x);</span><br><span class="line">	    <span class="type">int</span> <span class="variable">rooty</span> <span class="operator">=</span> find(bc,y);</span><br><span class="line">        <span class="keyword">if</span> (rootx==rooty) &#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            bc[rootx] = rooty;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">validPath</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span>[][] edges, <span class="type">int</span> source, <span class="type">int</span> destination)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] bc = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">            bc[i] = i;        <span class="comment">// 初始每个节点的根就是自己</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="有序集合treeset">有序集合TreeSet⭐</h1>
+<p>TreeSet 是一个有序集合，它扩展了 AbstractSet 类并实现了 NavigableSet 接口。</p>
+<ul>
+<li>它存储唯一的元素</li>
+<li>它不保留元素的插入顺序</li>
+<li>它按升序对元素进行排序</li>
+<li>它不是线程安全的</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">title: 排序原理</span><br><span class="line">TreeSet 存储对象的时候，可以排序，但是需要指定排序的算法  </span><br><span class="line">- Integer 能排序 (有默认顺序)，String 能排序 (有默认顺序)，自定义的类存储的时候出现异常 (没有顺序)  </span><br><span class="line">	- 对于数字直接是按从小到大顺序排序</span><br><span class="line">	- 对于字符串需要使用iterator()进行排序</span><br><span class="line">		```java</span><br><span class="line">		public class TreeSetTest &#123;</span><br><span class="line">		    public static void main(String[] args) &#123;</span><br><span class="line">		        Set ts = new TreeSet();</span><br><span class="line">		        ts.add(&quot;abc&quot;);</span><br><span class="line">		        ts.add(&quot;xyz&quot;);</span><br><span class="line">		        ts.add(&quot;rst&quot;);</span><br><span class="line">		        Iterator it = ts.iterator();    //重点</span><br><span class="line">		        while (it.hasNext()) &#123;</span><br><span class="line">		            System.out.print(it.next());</span><br><span class="line">		            System.out.print(&quot; &quot;);</span><br><span class="line">		        &#125;</span><br><span class="line">		    &#125;</span><br><span class="line">		&#125;</span><br><span class="line">		//abc rst xyz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果想把自定义类的对象存入 TreeSet 进行排序，那么必须实现 Comparable 接口<br />
+</li>
+<li>在类上 implement Comparable<br />
+</li>
+<li>重写 <code>compareTo()</code> 方法<br />
+</li>
+<li>在方法内定义比较算法, 根据大小关系，返回正数负数或零<br />
+</li>
+<li>在使用TreeSet存储对象的时候，<code>add()</code>方法内部就会自动调用<code>compareTo()</code>方法进行比较，根据比较结果使用二叉树形式进行存储 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 创建</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">TreeSet&lt;Integer&gt; set = new TreeSet&lt;&gt;();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="添加-3">添加</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.add(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="删除-2">删除</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.remove(<span class="number">3</span>);   <span class="comment">//将元素3删除</span></span><br></pre></td></tr></table></figure>
+<h2 id="清空">清空</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.clear();</span><br></pre></td></tr></table></figure>
+<h2 id="查询元素数量">查询元素数量</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.size();</span><br></pre></td></tr></table></figure>
+<h2 id="判空">判空</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.isEmpty();</span><br></pre></td></tr></table></figure>
+<h2 id="判断存在">判断存在</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.contains(<span class="number">3</span>);    <span class="comment">//判断3元素是否存在</span></span><br></pre></td></tr></table></figure>
+<h2 id="返回首个元素">返回首个元素</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.first();</span><br></pre></td></tr></table></figure>
+<h2 id="返回最后元素">返回最后元素</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.last()</span><br></pre></td></tr></table></figure>
+<h2 id="返回小于指定值的-treeset-的元素">返回小于指定值的 TreeSet 的元素</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.headSet(<span class="number">2</span>);      <span class="comment">//返回小于2的</span></span><br></pre></td></tr></table></figure>
+<h2 id="返回大于指定值的-treeset-的元素">返回大于指定值的 TreeSet 的元素</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.tailSet(<span class="number">2</span>);      <span class="comment">//返回大于2的</span></span><br></pre></td></tr></table></figure>
+<h2 id="迭代器-iterator-遍历">迭代器 iterator () 遍历🌟</h2>
+<p>返回类型为 Iterator ，它以升序返回 TreeSet 元素。</p>
+<p>例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IteratorOfTreeSet</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        TreeSet &lt;String&gt; tree_set = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;String&gt;();</span><br><span class="line">        tree_set.add(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">        tree_set.add(<span class="string">&quot;C++&quot;</span>);</span><br><span class="line">        tree_set.add(<span class="string">&quot;JAVA&quot;</span>);</span><br><span class="line">        tree_set.add(<span class="string">&quot;PHP&quot;</span>);</span><br><span class="line">        tree_set.add(<span class="string">&quot;SFDC&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;TreeSet: &quot;</span> + tree_set);</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;tree_set.iterator(): &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">Iterator</span> <span class="variable">itr</span> <span class="operator">=</span> tree_set.iterator(); itr.hasNext();)</span><br><span class="line">            System.out.println(itr.next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//TreeSet: [C, C++, JAVA, PHP, SFDC]</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//tree_set.iterator():</span></span><br><span class="line"><span class="comment">//C</span></span><br><span class="line"><span class="comment">//C++</span></span><br><span class="line"><span class="comment">//JAVA</span></span><br><span class="line"><span class="comment">//PHP</span></span><br><span class="line"><span class="comment">//SFDC</span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>LeetCode总结笔记</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://wryit.fun/2022/11/15/LeetCode%E6%80%BB%E7%BB%93%E7%AC%94%E8%AE%B0/">https://wryit.fun/2022/11/15/LeetCode总结笔记/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>火星架构师</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2022-11-15</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2022-11-15</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LeetCode/">LeetCode</a></div><div class="post_share"><div class="social-share" data-image="/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/11/15/LeetCode%E9%80%90%E9%A2%98%E7%AC%94%E8%AE%B0/" title="LeetCode逐题笔记"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-15</div><div class="title">LeetCode逐题笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author_top is-center"><div class="card-info-avatar"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-status-box"><div class="author-status"><g-emoji class="g-emoji" alias="palm_tree" fallback-src="https://lskypro.acozycotage.net/LightPicture/2022/12/fe1dc0402e623096.jpg">🐟</g-emoji><span>认真摸鱼中</span></div></div></div><div class="author-info__name">火星架构师</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Wang-Ruiyang"><i></i><span>🛴前往小家...</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/437601842" target="_blank" title="B站"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/Wang-Ruiyang" target="_blank" title="github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:wry0818@126.com" target="_blank" title="邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-MAILBOX"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><center>主域名：<br><a href="https://wryit.fun"><b><font color="#5ea6e5">wryit.fun</font></b></a>&nbsp</b></a></center></div><div id="welcome-info"></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">字符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#char"><span class="toc-number">2.1.</span> <span class="toc-text">char</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E7%AD%89%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">相等操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string"><span class="toc-number">2.2.</span> <span class="toc-text">string</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.1.</span> <span class="toc-text">常用函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E5%9C%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">判断字符是否包含在字符串中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E5%9C%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">判断字符串是否包含在字符串中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#compareto%E6%AF%94%E8%BE%83"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">compareTo()比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#substring%E6%88%AA%E6%96%AD"><span class="toc-number">2.2.1.4.</span> <span class="toc-text">substring()截断：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#replace%E6%9B%BF%E6%8D%A2"><span class="toc-number">2.2.1.5.</span> <span class="toc-text">replace()替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#equals%E7%9B%B8%E7%AD%89"><span class="toc-number">2.2.1.6.</span> <span class="toc-text">equals()相等</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#split%E5%88%86%E5%89%B2"><span class="toc-number">2.2.1.7.</span> <span class="toc-text">split()分割</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E5%89%B2%E5%8D%95%E4%B8%AA%E7%A9%BA%E6%A0%BC"><span class="toc-number">2.2.1.7.1.</span> <span class="toc-text">分割单个空格</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E5%89%B2%E5%A4%9A%E4%B8%AA%E8%BF%9E%E7%BB%AD%E7%A9%BA%E6%A0%BC"><span class="toc-number">2.2.1.7.2.</span> <span class="toc-text">分割多个连续空格</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">常用转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.1.</span> <span class="toc-text">字符➡️字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%8D%95%E4%B8%AA%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">将单个字符转为字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84%E8%BD%AC%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">将字符数组转为字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%97%E7%AC%A6"><span class="toc-number">2.3.2.</span> <span class="toc-text">字符串➡️字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E5%AE%8C%E6%95%B4%E6%95%B0%E7%BB%84"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">提取完整数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%80%E4%B8%8B%E6%A0%87%E7%9A%84%E5%AD%97%E7%AC%A6"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">提取字符串中某一下标的字符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%95%B4%E6%95%B0"><span class="toc-number">2.3.3.</span> <span class="toc-text">字符➡️整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B4%E6%95%B0"><span class="toc-number">2.3.4.</span> <span class="toc-text">字符串➡️整数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stringbuilder"><span class="toc-number">2.4.</span> <span class="toc-text">StringBuilder</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">2.4.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-number">2.4.2.</span> <span class="toc-text">插入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BE%E9%83%A8%E6%8F%92%E5%85%A5"><span class="toc-number">2.4.2.1.</span> <span class="toc-text">尾部插入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E6%8F%92%E5%85%A5"><span class="toc-number">2.4.2.2.</span> <span class="toc-text">中间插入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E5%BA%A6"><span class="toc-number">2.4.3.</span> <span class="toc-text">长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">2.4.4.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.4.5.</span> <span class="toc-text">转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stringbuilder%E8%BD%AC%E4%B8%BAstring"><span class="toc-number">2.4.5.1.</span> <span class="toc-text">StringBuilder转为String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string%E8%BD%AC%E4%B8%BAstringbuilder"><span class="toc-number">2.4.5.2.</span> <span class="toc-text">String转为StringBuilder</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F"><span class="toc-number">3.1.</span> <span class="toc-text">自定义排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9D"><span class="toc-number">3.2.</span> <span class="toc-text">拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-number">3.2.1.</span> <span class="toc-text">深拷贝</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#list"><span class="toc-number">4.</span> <span class="toc-text">list</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA"><span class="toc-number">4.1.</span> <span class="toc-text">构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%8D%95%E4%B8%AAlist"><span class="toc-number">4.1.1.</span> <span class="toc-text">对于单个List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%B5%8C%E5%A5%97list"><span class="toc-number">4.1.2.</span> <span class="toc-text">对于嵌套List</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0"><span class="toc-number">4.2.</span> <span class="toc-text">添加</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%8D%95%E4%B8%AAlist-1"><span class="toc-number">4.2.0.1.</span> <span class="toc-text">对于单个List</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%B5%8C%E5%A5%97list-1"><span class="toc-number">4.2.0.2.</span> <span class="toc-text">对于嵌套List</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-number">4.3.</span> <span class="toc-text">搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%E6%98%AF%E5%90%A6%E5%9C%A8%E5%85%B6%E4%B8%AD"><span class="toc-number">4.4.</span> <span class="toc-text">查找某个元素是否在其中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84list"><span class="toc-number">4.5.</span> <span class="toc-text">数组➡️List</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84-arraylist"><span class="toc-number">5.</span> <span class="toc-text">动态数组 ArrayList</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA-1"><span class="toc-number">5.1.</span> <span class="toc-text">构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-1"><span class="toc-number">5.2.</span> <span class="toc-text">添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%82%B9%E6%B7%BB%E5%8A%A0"><span class="toc-number">5.3.</span> <span class="toc-text">定点添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-1"><span class="toc-number">5.4.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA"><span class="toc-number">5.5.</span> <span class="toc-text">输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%BF%E5%BA%A6-1"><span class="toc-number">5.6.</span> <span class="toc-text">长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">5.7.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%87%E5%BA%8F%E6%8E%92%E5%BA%8F%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7"><span class="toc-number">5.7.1.</span> <span class="toc-text">升序排序（从小到大）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F%E4%BB%8E%E5%A4%A7%E5%88%B0%E5%B0%8F"><span class="toc-number">5.7.2.</span> <span class="toc-text">降序排序（从大到小）🌟</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#deque%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="toc-number">6.</span> <span class="toc-text">Deque双端队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0"><span class="toc-number">6.1.</span> <span class="toc-text">构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C"><span class="toc-number">6.2.</span> <span class="toc-text">操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deque%E4%B8%8Equeue%E7%9A%84%E5%AF%B9%E7%85%A7"><span class="toc-number">6.3.</span> <span class="toc-text">Deque与Queue的对照</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stream%E6%B5%81"><span class="toc-number">7.</span> <span class="toc-text">Stream流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E8%BD%AC%E4%B8%BA-list"><span class="toc-number">7.1.</span> <span class="toc-text">数组转为 list</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-number">8.</span> <span class="toc-text">链表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hashmap%E6%95%A3%E5%88%97%E8%A1%A8"><span class="toc-number">9.</span> <span class="toc-text">HashMap（散列表）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-1"><span class="toc-number">9.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%94%AE%E5%80%BC%E5%AF%B9"><span class="toc-number">9.2.</span> <span class="toc-text">添加键值对</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%94%AE%E5%80%BC%E5%AF%B9"><span class="toc-number">9.3.</span> <span class="toc-text">删除键值对</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%80%BC"><span class="toc-number">9.4.</span> <span class="toc-text">查找值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E5%80%BC"><span class="toc-number">9.5.</span> <span class="toc-text">更新值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E9%94%AE%E5%80%BC%E5%AF%B9%E6%95%B0%E9%87%8F"><span class="toc-number">9.6.</span> <span class="toc-text">查找键值对数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA"><span class="toc-number">9.7.</span> <span class="toc-text">判断是否为空</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%9C%89%E6%9F%90%E4%B8%AAkey"><span class="toc-number">9.8.</span> <span class="toc-text">判断是否有某个key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%9C%89%E6%9F%90%E4%B8%AAvalue"><span class="toc-number">9.9.</span> <span class="toc-text">判断是否有某个value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86"><span class="toc-number">9.10.</span> <span class="toc-text">遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E9%94%AE%E5%80%BC%E5%AF%B9"><span class="toc-number">9.11.</span> <span class="toc-text">删除所有键值对</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A-key-%E5%AF%B9%E5%BA%94%E5%AF%B9-value%E5%A6%82%E6%9E%9C%E6%89%BE%E4%B8%8D%E5%88%B0-key-%E5%88%99%E8%BF%94%E5%9B%9E%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-number">9.12.</span> <span class="toc-text">获取指定 key 对应对 value，如果找不到 key ，则返回设置的默认值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C-key-%E5%AD%98%E5%9C%A8%E5%88%99%E5%B0%86%E5%8E%9F%E5%A7%8B%E5%80%BC1%E5%A6%82%E6%9E%9C-key-%E4%B8%8D%E5%AD%98%E5%9C%A8%E5%88%99%E5%8A%A0%E5%85%A5value-%E8%AE%BE%E7%BD%AE%E4%B8%BA-1"><span class="toc-number">9.13.</span> <span class="toc-text">🌟如果 key 存在，则将原始值+1；如果 key 不存在，则加入（value 设置为 1）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#set-%E9%9B%86%E5%90%88"><span class="toc-number">10.</span> <span class="toc-text">Set 集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashset"><span class="toc-number">10.0.0.1.</span> <span class="toc-text">HashSet</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E6%A0%B9%E5%A0%86"><span class="toc-number">11.</span> <span class="toc-text">小根堆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-2"><span class="toc-number">11.1.</span> <span class="toc-text">创建：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%93%8D%E4%BD%9C"><span class="toc-number">11.2.</span> <span class="toc-text">添加操作：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA-1"><span class="toc-number">11.3.</span> <span class="toc-text">判断是否为空：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B9%E5%87%BA%E6%93%8D%E4%BD%9C%E5%BC%B9%E5%87%BA%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%E5%B9%B6%E8%BF%94%E5%9B%9E%E6%AD%A4%E6%95%B0"><span class="toc-number">11.4.</span> <span class="toc-text">弹出操作（弹出最小的数，并返回此数）：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%A0%B9%E5%A0%86"><span class="toc-number">12.</span> <span class="toc-text">大根堆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-3"><span class="toc-number">12.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E6%9E%84%E5%BB%BA"><span class="toc-number">12.2.</span> <span class="toc-text">复杂构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-2"><span class="toc-number">12.3.</span> <span class="toc-text">添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B9%E5%87%BA"><span class="toc-number">12.4.</span> <span class="toc-text">弹出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%95%BF%E5%BA%A6%E5%87%BD%E6%95%B0"><span class="toc-number">13.</span> <span class="toc-text">长度函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">14.</span> <span class="toc-text">位运算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="toc-number">15.</span> <span class="toc-text">并查集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88treeset"><span class="toc-number">16.</span> <span class="toc-text">有序集合TreeSet⭐</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-3"><span class="toc-number">16.1.</span> <span class="toc-text">添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-2"><span class="toc-number">16.2.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%A9%BA"><span class="toc-number">16.3.</span> <span class="toc-text">清空</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%83%E7%B4%A0%E6%95%B0%E9%87%8F"><span class="toc-number">16.4.</span> <span class="toc-text">查询元素数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E7%A9%BA"><span class="toc-number">16.5.</span> <span class="toc-text">判空</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%AD%98%E5%9C%A8"><span class="toc-number">16.6.</span> <span class="toc-text">判断存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E9%A6%96%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="toc-number">16.7.</span> <span class="toc-text">返回首个元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E6%9C%80%E5%90%8E%E5%85%83%E7%B4%A0"><span class="toc-number">16.8.</span> <span class="toc-text">返回最后元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%B0%8F%E4%BA%8E%E6%8C%87%E5%AE%9A%E5%80%BC%E7%9A%84-treeset-%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">16.9.</span> <span class="toc-text">返回小于指定值的 TreeSet 的元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%A4%A7%E4%BA%8E%E6%8C%87%E5%AE%9A%E5%80%BC%E7%9A%84-treeset-%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">16.10.</span> <span class="toc-text">返回大于指定值的 TreeSet 的元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8-iterator-%E9%81%8D%E5%8E%86"><span class="toc-number">16.11.</span> <span class="toc-text">迭代器 iterator () 遍历🌟</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By 火星架构师</div><div class="footer_custom_text">In me the tiger sniffs the rose.<p><a target="_blank" href="https://hexo.io/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/cursor.js"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="/js/txmap.js"></script><script async src="//at.alicdn.com/t/c/font_3880675_zk98w3veu9n.js"></script><script async src="/js/fps.js"></script><script async src="//at.alicdn.com/t/c/font_3880675_w3xksiojrkh.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/人工智能/&quot;);" href="javascript:void(0);">人工智能</a><span class="categoryBar-list-count">22</span><span class="categoryBar-list-descr">LeetCode</span></li><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/LeetCode/&quot;);" href="javascript:void(0);">LeetCode</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr">人工智能</span></li><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/SpringBoot/&quot;);" href="javascript:void(0);">SpringBoot</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">数据库</span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/数据库/&quot;);" href="javascript:void(0);">数据库</a><span class="categoryBar-list-count">5</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/服务器/&quot;);" href="javascript:void(0);">服务器</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/骚操作/&quot;);" href="javascript:void(0);">骚操作</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
