@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Pytorch基础系列（5） | 阳阳小屋</title><meta name="author" content="火星架构师"><meta name="copyright" content="火星架构师"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="LSTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch基础系列（5）">
+<meta property="og:url" content="https://wryit.fun/2023/03/02/5-LSTM/index.html">
+<meta property="og:site_name" content="阳阳小屋">
+<meta property="og:description" content="LSTM">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg">
+<meta property="article:published_time" content="2023-03-02T11:19:00.000Z">
+<meta property="article:modified_time" content="2023-03-02T11:19:00.000Z">
+<meta property="article:author" content="火星架构师">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="https://wryit.fun/2023/03/02/5-LSTM/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":250},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 火星架构师","link":"链接: ","source":"来源: 阳阳小屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pytorch基础系列（5）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-02 11:19:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="//at.alicdn.com/t/c/font_3880675_w3xksiojrkh.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><span id="fps"></span><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="icon faa-tada" aria-hidden="true">   <use xlink:href="#icon-daxue"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wangye"></use></svg><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang">                   </use></svg><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-biaoji">                   </use></svg><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-chuansong">                   </use></svg><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shijie">                   </use></svg><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-nanshi"></use></svg><span> 个人</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/personal/love/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-prompt">                   </use></svg><span> 恋爱</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/personal/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-star">                   </use></svg><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="阳阳小屋"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg"/><span class="site-name">阳阳小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="icon faa-tada" aria-hidden="true">   <use xlink:href="#icon-daxue"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wangye"></use></svg><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang">                   </use></svg><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-biaoji">                   </use></svg><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-chuansong">                   </use></svg><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shijie">                   </use></svg><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-nanshi"></use></svg><span> 个人</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/personal/love/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-prompt">                   </use></svg><span> 恋爱</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/personal/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-star">                   </use></svg><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Pytorch基础系列（5）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-02T11:19:00.000Z" title="发表于 2023-03-02 11:19:00">2023-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-02T11:19:00.000Z" title="更新于 2023-03-02 11:19:00">2023-03-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Pytorch基础系列（5）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="介绍">介绍</h1>
+<p><strong>LSTM（Long Short-Term Memory Networks）</strong>，翻译过来是<strong>长时间的短期记忆网络</strong>，它的本质就是能够记住很长时期内的信息（能记的长度长，但是保存的时间短）。</p>
+<p>在普通 RNN 中，循环神经网络结构都是由结构完全相同的模块进行复制而成的。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021125573.png" /></p>
+<p>LSTM 也有类似的结构，唯一的区别就是中间的部分，LSTM 不再只是一个单一的 tanh 层，而使用了四个相互作用的层。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021127384.png" /></p>
+<p>这里解释图中的符号。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021130897.png" /></p>
+<ul>
+<li>黄色的矩阵：表示的是一个神经网络层。</li>
+<li>粉红色的圆圈：表示逐点操作，如向量乘法、加法等。</li>
+<li>线：表示传递着一个向量，从一个节点中输入到另一个节点。</li>
+<li>合并的线：表示把两条线上所携带的向量进行合并（比如一个是 <span class="math inline">\(ℎ_{t−1}\)</span>，另一个是 <span class="math inline">\(x_t\)</span>，那么合并后的输出就是 <span class="math inline">\([h_{t-1},x_t]\)</span>）。</li>
+<li>分开的线：表示将线上传递的向量复制一份，传给两个地方。</li>
+</ul>
+<h1 id="lstm-核心思想">LSTM 核心思想</h1>
+<p>LSTM 的关键是 cell 状态，即贯穿图顶部的水平线。<br />
+cell 状态的传输就像一条传送带，向量从整个 cell 中穿过，只是做了少量的线性操作，这<strong>种结构能很轻松地实现信息从整个 cell 中穿过而不做改变（这样就可以实现长时期地记忆保留）。</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021134444.png" /></p>
+<p>LSTM 也有能力向 cell 状态中添加或删除信息，这是由称为<strong>门（gates）</strong> 的结构仔细控制的。<strong>门</strong>可以选择性的让信息通过，它们由 sigmoid 神经网络层和逐点相乘实现。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021512406.png" /></p>
+<p>每个 LSTM 有三个这样的<strong>门</strong>结构来实现控制信息： - forget gate 遗忘门 - input gate 输入门 - output gate 输出门</p>
+<h2 id="遗忘门">遗忘门</h2>
+<p>LSTM 的第一步是<strong>决定要从 cell 状态中丢弃什么信息</strong>，这个决定是由一个名为 <code>forget gate layer</code> 的 sigmoid 神经层来实现的。</p>
+<p>它的输入是 <span class="math inline">\(h_{t-1}\)</span> 和 <span class="math inline">\(x_t\)</span>，输出是一个数值都在 0~1 之间的向量（向量长度和 <span class="math inline">\(C_{t-1}\)</span> 一样），表示让 <span class="math inline">\(C_{t-1}\)</span> 的各部分信息通过的比重，0 表示不让任何信息通过，1 表示让所有信息通过</p>
+<p>思考一个具体的例子：假设一个语言模型试图基于前面所有的词预测下一个单词，在这种情况下，每个 cell 状态都应该包含了当前主语的性别（<strong>保留信息</strong>），这样接下来我们才能正确使用代词；但是当我们又开始描述一个新的主语时，就应该把旧主语的性别给忘了才对（<strong>忘记信息</strong>）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021522968.png" /></p>
+<h2 id="输入门">输入门</h2>
+<p>第二步是<strong>决定要让多少新的信息加入到 cell 状态中。</strong><br />
+实现这个需要包括两个步骤： 1. 首先，一个叫做 <code>input gate layer</code> 的 sigmoid 层决定哪些信息需要更新。另一个 tanh 层创建一个新的 candidate 向量 <span class="math inline">\(C_t\)</span>。 2. 之后，我们把这两个部分联合起来对 cell 状态进行更新。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021524401.png" /></p>
+<p>在我们的语言模型的例子中，我们想把新的主语性别信息添加到 cell 状态中，替换掉老的状态信息。<br />
+有了上述的结构，我们就能够更新 cell 状态了，即把 <span class="math inline">\(C_{t-1}\)</span> 更新为 <span class="math inline">\(C_t\)</span>。<br />
+从结构图中应该能一目了然，首先我们把旧的状态 <span class="math inline">\(C_{t-1}\)</span> 和 <span class="math inline">\(f_t\)</span> 相乘，把一些不想保留的信息忘掉，然后加上 <span class="math inline">\(i_{t}* C_t\)</span>。这部分信息就是我们要添加的新内容。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021527016.png" /></p>
+<h2 id="输出门">输出门</h2>
+<p>最后，需要决定输出什么值。这个输出主要是依赖于 cell 状态 <span class="math inline">\(C_t\)</span>，但是是经过筛选的版本。</p>
+<p>首先，经过一个 sigmoid 层，它决定 <span class="math inline">\(C_t\)</span> 中的哪些部分将会被输出。接着，我们把 <span class="math inline">\(C_t\)</span> 通过一个 tanh 层（把数值归一化到 - 1 和 1 之间），然后把 tanh 层的输出和 simoid 层计算出来的权重相乘，这样就得到了最后的输出结果。</p>
+<p>在语言模型例子中，假设我们的模型刚刚接触了一个代词，接下来可能要输出一个动词，这个输出可能就和代词的信息有关了。比如说，这个动词应该采用单数形式还是复数形式，那么我们就得把刚学到的和代词相关的信息都加入到 cell 状态中来，才能够进行正确的预测。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021548085.png" /></p>
+<h1 id="原理示例">原理示例</h1>
+<p>假设传入到 cell 的 input 叫做 <span class="math inline">\(z\)</span>，操控 input gate 的信号记为 <span class="math inline">\(z_i\)</span>，控制 forget gate 的信号记为 <span class="math inline">\(z_f\)</span>，控制 output gate 的信号记为 <span class="math inline">\(z_o\)</span>，综合这些东西得到的 output 记为 <span class="math inline">\(a\)</span>，假设 memory 里面已经存了一个值 <span class="math inline">\(c\)</span>。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021601710.png" /></p>
+<p>先看下图具体的 cell，每条线上面的值就是 <span class="math inline">\(weight\)</span>，绿色框和线构成 <span class="math inline">\(bias\)</span>，<code>input gate</code> 和 <code>forget gate</code> 的 activation function 都是 sigmoid，为了方便，<span class="math inline">\(z_i,z_o,z_f\)</span> 直接利用输入的 vector，<span class="math inline">\(g\)</span> 和 <span class="math inline">\(h\)</span> 假设都是 Linear（这样计算比较方便），假设存到 memory 里面的初值是 0。</p>
+<p>在实际运算前，我们先根据它的 input 以及其它参数，分析可能会得到的结果。<br />
+底下这个从外界传入的 cell，<span class="math inline">\(x_1\)</span> 乘以 1，其它 <span class="math inline">\(x\)</span> 乘以 0，相当于直接把 <span class="math inline">\(x_1\)</span> 当做输入。<br />
+在 <code>input gate</code> 中，<span class="math inline">\(x_2\)</span> 乘以 100，<span class="math inline">\(bias\)</span> 是 -10。<br />
+在 <code>forget gate</code> 中，也是 <span class="math inline">\(x_2\)</span> 乘以 100， <span class="math inline">\(bias\)</span> 是 10。<br />
+在 <code>output gate</code> 中，<span class="math inline">\(x_3\)</span> 乘以 100，<span class="math inline">\(bias\)</span> 是 - 10。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021604324.png" /></p>
+<h2 id="例-1">例 1</h2>
+<p>带入一个实际的 input([3, 1, 0]) 。<br />
+<code>input</code> 这里 3*1=3。<br />
+<code>input gate</code> 这边是 1*100-10=90，但是由于要经过一个 sigmoid，所以 ≈1，那么 <span class="math inline">\(g(z)*f(z_i)=3\)</span>。<br />
+<code>forget gate</code> 这边是 1*100+10=110，也要经过一个 sigmoid，所以 ≈1，那么此时 memory 的值 <span class="math inline">\(c\)</span> 就更新为 <span class="math inline">\(c&#39;=g(z)*f(z_i)+c*f(z_f)=3+0∗1=3\)</span>。<br />
+<code>output gate</code> 这边是 0*100-10=-10，经过 sigmoid 以后 ≈0。<br />
+最终输出 <span class="math inline">\(a=h(c&#39;)*f(z_o)=0\)</span>。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021628865.png" /></p>
+<p>掐他案例同理~（注意更新后的 <span class="math inline">\(c\)</span> 依赖于更新前的 <span class="math inline">\(c\)</span>）</p>
+<h1 id="pytorch-实现">PyTorch 实现</h1>
+<p>这里给出 LSTM 的 Api 链接：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM">LSTM — PyTorch 1.13 documentation</a></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021652474.png" /></p>
+<p>输入数据格式：</p>
+<ul>
+<li>input：<code>[seq_len, batch, input_size]</code></li>
+<li><span class="math inline">\(ℎ_0\)</span> ：<code>[num_layers * num_directions, batch, hidden_size]</code></li>
+<li><span class="math inline">\(c_0\)</span> ：<code>[num_layers * num_directions, batch, hidden_size]</code></li>
+</ul>
+<p>输出数据格式：</p>
+<ul>
+<li>output：<code>[seq_len, batch, hidden_size * num_directions]</code></li>
+<li><span class="math inline">\(h_n\)</span> ：<code>[num_layers * num_directions, batch, hidden_size]</code></li>
+<li><span class="math inline">\(c_n\)</span> ：<code>[num_layers * num_directions, batch, hidden_size]</code></li>
+</ul>
+<h2 id="导包">导包</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch  </span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br></pre></td></tr></table></figure>
+<h2 id="调用">调用</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lstm = nn.LSTM(input_size=<span class="number">100</span>, hidden_size=<span class="number">20</span>, num_layers=<span class="number">4</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 一个句子10个单词，送进去3条句子，每个单词用一个100维的vector表示  </span></span><br><span class="line">X = torch.randn(<span class="number">10</span>, <span class="number">3</span>, <span class="number">100</span>)       </span><br><span class="line"></span><br><span class="line">out, (h_n, c_n) = lstm(X)  </span><br><span class="line"><span class="built_in">print</span>(out.shape, h_n.shape, c_n.shape)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>torch. Size ([10, 3, 20])<br />
+torch. Size ([4, 3, 20])<br />
+torch. Size ([4, 3, 20])</p>
+</blockquote>
+<h2 id="lstmcell">LSTMCell</h2>
+<h3 id="lstm-和-lstmcell">LSTM 和 LSTMCell</h3>
+<p>LSTMCEll 就是 LSTM 的物理结构，即：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021936740.png" /></p>
+<p>而 LSTM 则是 LSTMcell 在时间上的扩展，即：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303021127384.png" /></p>
+<p>输入 <code>input_size</code> 的 shape 是 <code>[batch, input_size]</code><br />
+输出 <span class="math inline">\(h_t\)</span> 和 <span class="math inline">\(c_t\)</span> 的 shape 是 <code>[batch, hidden_size]</code></p>
+<h3 id="单层-lstm">单层 LSTM</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cell = nn.LSTMCell(input_size=<span class="number">100</span>, hidden_size=<span class="number">20</span>)  </span><br><span class="line">x = torch.randn(<span class="number">10</span>, <span class="number">3</span>, <span class="number">100</span>)  </span><br><span class="line">h = torch.zeros(<span class="number">3</span>,<span class="number">20</span>)  </span><br><span class="line">c = torch.zeros(<span class="number">3</span>,<span class="number">20</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> xt <span class="keyword">in</span> x:  </span><br><span class="line">    h, c = cell(xt, [h,c])  </span><br><span class="line">  </span><br><span class="line"><span class="built_in">print</span>(h.shape, c.shape)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>torch. Size ([3, 20])<br />
+torch. Size ([3, 20])</p>
+</blockquote>
+<h3 id="双层-lstm">双层 LSTM</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cell1 = nn.LSTMCell(input_size=<span class="number">100</span>, hidden_size=<span class="number">30</span>)  </span><br><span class="line">cell2 = nn.LSTMCell(input_size=<span class="number">30</span>, hidden_size=<span class="number">20</span>)  </span><br><span class="line">  </span><br><span class="line">x = torch.randn(<span class="number">10</span>, <span class="number">3</span>, <span class="number">100</span>)  </span><br><span class="line">  </span><br><span class="line">h1 = torch.zeros(<span class="number">3</span>, <span class="number">30</span>)  </span><br><span class="line">c1 = torch.zeros(<span class="number">3</span>, <span class="number">30</span>)  </span><br><span class="line">h2 = torch.zeros(<span class="number">3</span>,<span class="number">20</span>)  </span><br><span class="line">c2 = torch.zeros(<span class="number">3</span>,<span class="number">20</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> xt <span class="keyword">in</span> x:  </span><br><span class="line">    h1, c1 = cell1(xt, [h1,c1])  </span><br><span class="line">    h2, c2 = cell2(h1, [h2,c2])  </span><br><span class="line">  </span><br><span class="line"><span class="built_in">print</span>(h2.shape, c2.shape)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>torch. Size ([3, 20])<br />
+torch. Size ([3, 20])</p>
+</blockquote>
+<h1 id="bilstm-实现文本预测">BiLSTM 实现文本预测</h1>
+<h2 id="导包-1">导包</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch  </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np  </span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn  </span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim  </span><br><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data  </span><br><span class="line">  </span><br><span class="line">dtype = torch.FloatTensor</span><br></pre></td></tr></table></figure>
+<h2 id="准备数据">准备数据</h2>
+<p>构建词向量索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sentence = (  </span><br><span class="line">    <span class="string">&#x27;GitHub Actions makes it easy to automate all your software workflows &#x27;</span>  </span><br><span class="line">    <span class="string">&#x27;from continuous integration and delivery to issue triage and more&#x27;</span>)    <span class="comment"># 实际上是一句话  </span></span><br><span class="line">  </span><br><span class="line">word2idx = &#123;w: i <span class="keyword">for</span> i, w <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">list</span>(<span class="built_in">set</span>(sentence.split())))&#125;  </span><br><span class="line">idx2word = &#123;i: w <span class="keyword">for</span> i, w <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">list</span>(<span class="built_in">set</span>(sentence.split())))&#125;  </span><br><span class="line">  </span><br><span class="line">n_class = <span class="built_in">len</span>(word2idx)  </span><br><span class="line">max_len = <span class="built_in">len</span>(sentence.split())  </span><br><span class="line">  </span><br><span class="line">n_hidden = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sentence<br />
+&gt; 'GitHub Actions makes it easy to automate all your software workflows from continuous integration and delivery to issue triage and more'<br />
+word2idx<br />
+&gt; {'issue': 0,'integration': 1,'from': 2,'workflows': 3,'and': 4,'continuous': 5,'your': 6,<br />
+&gt; 'software': 7,'GitHub': 8,'automate': 9,'easy': 10,'to': 11,'triage': 12, makes': 13,<br />
+&gt; 'Actions': 14,'more': 15,'all': 16,'it': 17,'delivery': 18}<br />
+idx2word<br />
+&gt; {0: 'issue', 1: 'integration', 2: 'from', 3: 'workflows', 4: 'and', 5: 'continuous', 6: 'your',<br />
+&gt; 7: 'software', 8: 'GitHub', 9: 'automate', 10: 'easy', 11: 'to', 12: 'triage', 13: 'makes',<br />
+&gt; 14: 'Actions', 15: 'more', 16: 'all', 17: 'it', 18: 'delivery'}<br />
+n_class<br />
+&gt; 19<br />
+max_len<br />
+&gt; 21</p>
+</blockquote>
+<h2 id="数据预处理">数据预处理</h2>
+<p>定义 dataset，构建 dataloader。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">make_data</span>(<span class="params">sentence</span>):  </span><br><span class="line">    input_batch = []  </span><br><span class="line">    target_batch = []  </span><br><span class="line">  </span><br><span class="line">    words = sentence.split()  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(max_len-<span class="number">1</span>):  </span><br><span class="line">        <span class="built_in">input</span> = [word2idx[w] <span class="keyword">for</span> w <span class="keyword">in</span> words[:(i+<span class="number">1</span>)]]     <span class="comment"># (i+1)位置取不到  </span></span><br><span class="line">        <span class="built_in">input</span> = <span class="built_in">input</span> + [<span class="number">0</span>] * (max_len - <span class="built_in">len</span>(<span class="built_in">input</span>))     </span><br><span class="line">        input_batch.append(np.eye(n_class)[<span class="built_in">input</span>])  </span><br><span class="line">        target = word2idx[words[i+<span class="number">1</span>]]  </span><br><span class="line">        target_batch.append(target)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> torch.Tensor(input_batch), torch.LongTensor(target_batch)  </span><br><span class="line">  </span><br><span class="line">input_batch, target_batch = make_data(sentence)  </span><br><span class="line">dataset = Data.TensorDataset(input_batch, target_batch)  </span><br><span class="line">dataloader = Data.DataLoader(dataset, <span class="number">16</span> ,<span class="literal">True</span>)     <span class="comment"># 中间参数是batch_size</span></span><br></pre></td></tr></table></figure>
+<p>注意这里 <code>n_class==19</code>，表示词向量字典的长度。</p>
+<p>首先开始循环，<code>input</code> 的第一个赋值语句会将第一个词 "Github"对应的索引存起来。<code>input</code> 的第二个赋值语句会将剩下的 <code>max_len-len(input)</code> 都用 0 去填充。<br />
+第二次循环，<code>input</code> 的第一个赋值语句会将前两个词 "Github" 和 "Actions" 对应的索引存起来。<code>input</code> 的第二个赋值语句会将剩下的 <code>max_len-len(input)</code> 都用 0 去填充……</p>
+<p>在本例中，<code>input_batch</code> 中的向量分别表示"GitHub"，"GitHub Actions", "GitHub Actions makes"……<code>target_batch</code> 中的向量分别表示"Actions"，"makes"，"it"……</p>
+<p><code>np.eye(n_class)[input]</code> 表示构建一个 <code>len(input)*n_class</code> 的矩阵，<code>input</code> 表示在适当的位置填 1。</p>
+<p>最终 <code>input_batch</code> 的维度是 <code>[max_len - 1, max_len, n_class]</code>。</p>
+<h2 id="定义网络">定义网络</h2>
+<p>Bi-LSTM 的网络结构图如下所示，其中 Backward Layer 意思不是 "反向传播"，而是 <strong>"将句子反向输入"</strong>。</p>
+<p>具体流程就是，现有有由四个词构成的一句话 "i like your friends"。 - 常规单向 LSTM 的做法就是直接输入 "i like your"，然后预测出 "friends"。 - 双向 LSTM 会同时输入 "i like your" 和 "your like i"，然后将 Forward Layer 和 Backward Layer 的 <code>output</code> 进行 concat（这样做可以理解为同时 "汲取" 正向和反向的信息），最后预测出 "friends"。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303022237270.png" /></p>
+<p>因为多了一个反向的输入，所以整个网络结构中很多隐藏层的输入和输出的某些维度会变为原来的两倍，具体如下图所示。对于双向 LSTM 来说：<code>num_directions = 2</code>。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202303022245351.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BiLSTM</span>(nn.Module):  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):  </span><br><span class="line">        <span class="built_in">super</span>(BiLSTM, self).__init__()  </span><br><span class="line">        <span class="comment"># input_size表示每个词用input_size维的vector表示  </span></span><br><span class="line">        self.lstm = nn.LSTM(input_size=n_class, hidden_size=n_hidden, bidirectional=<span class="literal">True</span>)  </span><br><span class="line">        self.fc = nn.Linear(n_hidden * <span class="number">2</span>, n_class)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, X</span>):  </span><br><span class="line">        <span class="comment"># X: [batch_size, max_len, n_class]  </span></span><br><span class="line">        batch_size = X.shape[<span class="number">0</span>]  </span><br><span class="line">        <span class="comment"># input: [max_len, batch_size, n_class]  </span></span><br><span class="line">        <span class="built_in">input</span> = X.transpose(<span class="number">0</span>,<span class="number">1</span>)  </span><br><span class="line">        <span class="comment"># [num_layers(=1) * num_directions(=2), batch_size, n_hidden]  </span></span><br><span class="line">        hidden_state = torch.randn(<span class="number">1</span>*<span class="number">2</span>, batch_size, n_hidden)  </span><br><span class="line">        <span class="comment"># [num_layers(=1) * num_directions(=2), batch_size, n_hidden]  </span></span><br><span class="line">        cell_state = torch.randn(<span class="number">1</span>*<span class="number">2</span>, batch_size, n_hidden)  </span><br><span class="line">  </span><br><span class="line">        outputs, (_,_) = self.lstm(<span class="built_in">input</span>, (hidden_state, cell_state))  </span><br><span class="line">        <span class="comment"># outputs: [batch_size, n_hidden * 2]  </span></span><br><span class="line">        outputs = outputs[-<span class="number">1</span>]  </span><br><span class="line">        <span class="comment"># model: [batch_size, n_class]  </span></span><br><span class="line">        model = self.fc(outputs)  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">return</span> model  </span><br><span class="line">  </span><br><span class="line">model = BiLSTM()  </span><br><span class="line">criterion = nn.CrossEntropyLoss()  </span><br><span class="line">optimizer = optim.Adam(modol.parameters(), lr=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="训练">训练</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">epoch = <span class="number">10000</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> e <span class="keyword">in</span> <span class="built_in">range</span>(epoch):  </span><br><span class="line">    <span class="keyword">for</span> x, y <span class="keyword">in</span> dataloader:  </span><br><span class="line">        pred = model(x)  </span><br><span class="line">        loss = criterion(pred, y)  </span><br><span class="line">        <span class="keyword">if</span> (epoch + <span class="number">1</span>)% <span class="number">1000</span> == <span class="number">0</span>:  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Epoch:&#x27;</span>, <span class="string">&#x27;%04d&#x27;</span> % (epoch + <span class="number">1</span>), <span class="string">&#x27;cost =&#x27;</span>, <span class="string">&#x27;&#123;:.6f&#125;&#x27;</span>.<span class="built_in">format</span>(loss))  </span><br><span class="line">  </span><br><span class="line">        optimizer.zero_grad()  </span><br><span class="line">        loss.backward()  </span><br><span class="line">        optimizer.step()</span><br></pre></td></tr></table></figure>
+<h2 id="测试">测试</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predict = model(input_batch).data.<span class="built_in">max</span>(<span class="number">1</span>, keepdim=<span class="literal">True</span>)[<span class="number">1</span>]  </span><br><span class="line"><span class="built_in">print</span>(sentence)  </span><br><span class="line"><span class="built_in">print</span>([idx2word[n.item()] <span class="keyword">for</span> n <span class="keyword">in</span> predict.squeeze()])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>GitHub Actions makes it easy to automate all your software workflows from continuous integration and delivery to issue triage and more<br />
+['to', 'to', 'easy', 'to', 'to', 'to', 'to', 'your', 'software', 'workflows', 'from', 'continuous', 'integration', 'delivery', 'delivery', 'to', 'issue', 'triage', 'more', 'more']</p>
+</blockquote>
+<h1 id="相关链接">相关链接</h1>
+<p><a target="_blank" rel="noopener" href="https://wmathor.com/index.php/archives/1397/">LSTM - mathor</a><br />
+<a target="_blank" rel="noopener" href="https://wmathor.com/index.php/archives/1399/">LSTM Example - mathor</a><br />
+<a target="_blank" rel="noopener" href="https://wmathor.com/index.php/archives/1447/">BiLSTM的PyTorch应用 - mathor</a><br />
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tf4y117hA/?spm_id_from=333.999.0.0&amp;vd_source=ec8fb32942c22665057156952ef080c7">BiLSTM的PyTorch应用_哔哩哔哩_bilibili</a><br />
+<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM">LSTM — PyTorch 1.13 documentation</a></p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>Pytorch基础系列（5）</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://wryit.fun/2023/03/02/5-LSTM/">https://wryit.fun/2023/03/02/5-LSTM/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>火星架构师</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-03-02</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-03-02</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NLP/">NLP</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/20/1-DataSet-DataLoader/" title="NLP基础系列（1）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-20</div><div class="title">NLP基础系列（1）</div></div></a></div><div><a href="/2023/02/27/1-%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="Pytorch基础系列（1）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="title">Pytorch基础系列（1）</div></div></a></div><div><a href="/2023/02/20/2-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" title="NLP基础系列（2）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-20</div><div class="title">NLP基础系列（2）</div></div></a></div><div><a href="/2023/02/28/2-%E6%B1%A0%E5%8C%96%E5%B1%82/" title="Pytorch基础系列（2）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-28</div><div class="title">Pytorch基础系列（2）</div></div></a></div><div><a href="/2023/02/28/3-%E6%96%87%E6%9C%AC%E9%A2%84%E5%A4%84%E7%90%86-%E6%9E%84%E5%BB%BAVocab/" title="Pytorch基础系列（3）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-28</div><div class="title">Pytorch基础系列（3）</div></div></a></div><div><a href="/2023/02/21/3-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" title="NLP基础系列（3）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-21</div><div class="title">NLP基础系列（3）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author_top is-center"><div class="card-info-avatar"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-status-box"><div class="author-status"><g-emoji class="g-emoji" alias="palm_tree" fallback-src="https://lskypro.acozycotage.net/LightPicture/2022/12/fe1dc0402e623096.jpg">🐟</g-emoji><span>认真摸鱼中</span></div></div></div><div class="author-info__name">火星架构师</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Wang-Ruiyang"><i></i><span>🛴前往小家...</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/437601842" target="_blank" title="B站"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/Wang-Ruiyang" target="_blank" title="github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:wry0818@126.com" target="_blank" title="邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-MAILBOX"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><center>主域名：<br><a href="https://wryit.fun"><b><font color="#5ea6e5">wryit.fun</font></b></a>&nbsp</b></a></center></div><div id="welcome-info"></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lstm-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">2.</span> <span class="toc-text">LSTM 核心思想</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%97%E5%BF%98%E9%97%A8"><span class="toc-number">2.1.</span> <span class="toc-text">遗忘门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E9%97%A8"><span class="toc-number">2.2.</span> <span class="toc-text">输入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E9%97%A8"><span class="toc-number">2.3.</span> <span class="toc-text">输出门</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">原理示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B-1"><span class="toc-number">3.1.</span> <span class="toc-text">例 1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pytorch-%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">PyTorch 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%8C%85"><span class="toc-number">4.1.</span> <span class="toc-text">导包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8"><span class="toc-number">4.2.</span> <span class="toc-text">调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lstmcell"><span class="toc-number">4.3.</span> <span class="toc-text">LSTMCell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lstm-%E5%92%8C-lstmcell"><span class="toc-number">4.3.1.</span> <span class="toc-text">LSTM 和 LSTMCell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%B1%82-lstm"><span class="toc-number">4.3.2.</span> <span class="toc-text">单层 LSTM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%B1%82-lstm"><span class="toc-number">4.3.3.</span> <span class="toc-text">双层 LSTM</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bilstm-%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E9%A2%84%E6%B5%8B"><span class="toc-number">5.</span> <span class="toc-text">BiLSTM 实现文本预测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%8C%85-1"><span class="toc-number">5.1.</span> <span class="toc-text">导包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE"><span class="toc-number">5.2.</span> <span class="toc-text">准备数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">5.3.</span> <span class="toc-text">数据预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E7%BD%91%E7%BB%9C"><span class="toc-number">5.4.</span> <span class="toc-text">定义网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83"><span class="toc-number">5.5.</span> <span class="toc-text">训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">5.6.</span> <span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="toc-number">6.</span> <span class="toc-text">相关链接</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302221753482.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By 火星架构师</div><div class="footer_custom_text">In me the tiger sniffs the rose.<p><a target="_blank" href="https://hexo.io/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/cursor.js"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="/js/txmap.js"></script><script async src="//at.alicdn.com/t/c/font_3880675_zk98w3veu9n.js"></script><script async src="/js/fps.js"></script><script async src="//at.alicdn.com/t/c/font_3880675_w3xksiojrkh.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/人工智能/&quot;);" href="javascript:void(0);">人工智能</a><span class="categoryBar-list-count">23</span><span class="categoryBar-list-descr">LeetCode</span></li><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/LeetCode/&quot;);" href="javascript:void(0);">LeetCode</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr">人工智能</span></li><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/SpringBoot/&quot;);" href="javascript:void(0);">SpringBoot</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">数据库</span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/数据库/&quot;);" href="javascript:void(0);">数据库</a><span class="categoryBar-list-count">5</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/服务器/&quot;);" href="javascript:void(0);">服务器</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/骚操作/&quot;);" href="javascript:void(0);">骚操作</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

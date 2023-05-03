@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>知识图谱相关概念 | 阳阳小屋</title><meta name="author" content="火星架构师"><meta name="copyright" content="火星架构师"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="知识图谱入门介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识图谱相关概念">
+<meta property="og:url" content="https://wryit.fun/2023/02/06/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/index.html">
+<meta property="og:site_name" content="阳阳小屋">
+<meta property="og:description" content="知识图谱入门介绍">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wryit.fun/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg">
+<meta property="article:published_time" content="2023-02-06T18:35:13.000Z">
+<meta property="article:modified_time" content="2023-02-06T18:35:13.000Z">
+<meta property="article:author" content="火星架构师">
+<meta property="article:tag" content="知识图谱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wryit.fun/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="https://wryit.fun/2023/02/06/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":250},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 火星架构师","link":"链接: ","source":"来源: 阳阳小屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '知识图谱相关概念',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-06 18:35:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="//at.alicdn.com/t/c/font_3880675_w3xksiojrkh.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><span id="fps"></span><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="icon faa-tada" aria-hidden="true">   <use xlink:href="#icon-daxue"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wangye"></use></svg><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang">                   </use></svg><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-biaoji">                   </use></svg><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-chuansong">                   </use></svg><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shijie">                   </use></svg><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-nanshi"></use></svg><span> 个人</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/personal/love/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-prompt">                   </use></svg><span> 恋爱</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/personal/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-star">                   </use></svg><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="阳阳小屋"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg"/><span class="site-name">阳阳小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="icon faa-tada" aria-hidden="true">   <use xlink:href="#icon-daxue"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wangye"></use></svg><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang">                   </use></svg><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-biaoji">                   </use></svg><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-chuansong">                   </use></svg><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/link/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shijie">                   </use></svg><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page group faa-parent animated-hover hide" href="javascript:void(0);"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-nanshi"></use></svg><span> 个人</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/personal/love/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-prompt">                   </use></svg><span> 恋爱</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/personal/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-star">                   </use></svg><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">知识图谱相关概念</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-06T18:35:13.000Z" title="发表于 2023-02-06 18:35:13">2023-02-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-06T18:35:13.000Z" title="更新于 2023-02-06 18:35:13">2023-02-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="知识图谱相关概念"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>文章来源： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/114470141">知识图谱嵌入(KGE)主流模型简介 - 知乎</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77497246">电影知识图谱问答（三）|Apache Jena知识存储及SPARQL知识检索 - 知乎</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77594347">电影知识图谱问答（四）| 问句理解及答案推理 - 知乎</a></p>
+</blockquote>
+<h1 id="知识图谱介绍">知识图谱介绍</h1>
+<p>知识图谱是由大量的事实三元组组成，如（英国, 首都, 伦敦）便是真实世界中的知识，可用 <span class="math inline">\((h, r, t )\)</span> 进行表示，其中 <span class="math inline">\(h, t\)</span> 表示头尾实体，<span class="math inline">\(r\)</span> 表示关系。但我们知道，真实世界中知识是无限增长的，而知识图谱却不能包含真实世界中的所有知识，因此需在知识库中进行知识补全，或者称为<strong>链接预测</strong>。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062012617.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p><strong>链接预测</strong>一个可行的方法便是将实体和关系进行 Embedding 表示，类似于 Word2Vec，将字或词表示成 Embedding 信息。然后<strong>根据实体和关系的 Embedding 信息进行预测</strong>，比如<strong>利用头实体和关系去预测尾实体</strong>，或者<strong>利用尾实体和关系去预测头实体</strong>。当然，Embedding 信息也可应用到其他领域，比如知识问答、文本信息增强、语义检索等。</p>
+<p><strong>知识图谱嵌入 (Knowledge Graph Embedding, KGE)</strong> 学习知识库中的实体和关系的 Embedding 表示，是语义检索、知识问答、推荐等众多应⽤的基础研究。</p>
+<h1 id="知识图谱嵌入kge">知识图谱嵌入（KGE）</h1>
+<p>KGE 是将知识库中的实体和关系进行 Embedding 表示，模型规划为： - 翻译 (TransE, TransH, TransR, etc) - 双线性 (RESCAL, DisMult, ComplEx, etc) - 双曲几何 (Poincare, MuRE, etc) - 神经网络 (ConvE, CapsE, etc) - 旋转 (RotatE, QuatE, DihEdral, etc)</p>
+<p>KGE 主要关注方面： - <strong>关系的多样性</strong>，如 1-1, 1-N, N-1, N-N 关系，对称/反对称、翻转、组合等信息。如翻译、旋转模型。 - <strong>实体的层次性</strong>，实体之间的上下位关系。如双曲空间模型。 - <strong>实体和关系的深层次交互信息</strong>。如双线性和神经网络模型。</p>
+<h2 id="翻译模型">翻译模型</h2>
+<blockquote>
+<p>翻译模型是<strong>把关系当作头实体和尾实体之间的翻译</strong>，包括TransE, TransH, TransD等模型。</p>
+</blockquote>
+<h3 id="transe">TransE</h3>
+<p><strong>TransE</strong> 认为 <span class="math inline">\(h+r≈t\)</span> ，即 r 是头尾实体之间的翻译关系，优化目标是最小化评分函数。TransE 能够解决 <strong>1-1 类别</strong>的关系，但不能够很好的解决 1-N, N-1, N-N 关系。比如（流浪地球，演员，吴京）、（流浪地球，演员，吴孟达）两个三元组，当头实体 <span class="math inline">\(h\)</span> 和关系 <span class="math inline">\(r\)</span> 相同时，TransE 认为所有尾实体 <span class="math inline">\(t\)</span> 具有相同的 Embedding 信息，但实际情况并非如此。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062019837.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="transh">TransH</h3>
+<p>针对 TransE 存在的问题，<strong>TransH</strong> 把头实体 h 和尾实体 t 投影到关系所在的超平面中。经过投影后，尽管头实体 h 和关系 r 相同，尾实体 t 的 Embedding 信息也会不同，TransH 能够一定程度上解决多对多的关系。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062020361.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="transr">TransR</h3>
+<p><strong>TransR</strong> 认为 TransE 和 TransH 均是把实体和关系放在同一空间中进行考虑，但实体可能具有多个不同方面的属性，不同的关系也关注着实体的不同属性，因此把实体和关系放在同一空间中考虑是不准确的。因此，TransR 构建实体空间和关系空间。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062024969.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="其他">其他</h3>
+<p>除了TransE, TransH, TransR以外，还有其他Trans模型，考虑实体和关系的概率性、稀疏性等问题，此处不再赘述。但总体上，Trans模型均是把关系当作头尾实体之间的翻译，解决知识库中所存在的多对多问题。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062024241.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h2 id="双线性模型">双线性模型</h2>
+<blockquote>
+<p>双线性模型<strong>计算实体和关系在向量空间中潜在语义的可信度</strong>，包括RESCAL、DisMult、ComplEx等模型。</p>
+</blockquote>
+<h3 id="rescal">RESCAL</h3>
+<p>RESCAL 把关系利用满秩矩阵表示，其实体和关系之间全是矩阵运算，因此实体和关系的信息可以进行深层次交互，非常具有表现力。但同时，<strong>RESCAL 容易过拟合</strong>，并且随着关系矩阵维度的增加，复杂度会很高，<strong>很难应用到大规模知识图谱。</strong></p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062031504.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="dismult">DisMult</h3>
+<p>针对 RESCAL 存在的问题，DisMult 放松对关系矩阵的约束，把关系矩阵 M_r 利用对角矩阵表示。但 DisMult 过分简化了 RESCAL 模型，导致<strong>只能够解决知识库中存在的对称关系，不能够解决知识图谱中其他类型的关系。</strong></p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062034521.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="complex">ComplEx</h3>
+<p>针对 DisMult 存在的问题，ComplEx 把 DisMult 扩展到复数空间表示。ComplEx 对 DisMult 扩展后，能够同时解决对称和非对称关系。ComplEx 首次在 KGE 中引入复数方法，还有其他模型利用复数空间解决问题，并且可解决除对称、非对称外更复杂的对称类型。</p>
+<h3 id="其他-1">其他</h3>
+<p>除 RESCAL, DisMult, ComplEx 外，还有其他双线性模型，考虑实体和关系的潜在语义信息，获取实体和关系的深层次交互信息。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062053189.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h2 id="神经网络模型">神经网络模型</h2>
+<blockquote>
+<p>多数翻译模型和双线性模型是16年之前模型，最近几年随着神经网络的兴起，也有利用神经网络解决KGE问题的模型，包括ConvE、CapsE等。</p>
+</blockquote>
+<h3 id="conve">ConvE</h3>
+<p>ConvE 首先把头实体和关系转换为二维向量，接下来利用卷积层和全连接层获取交互信息，然后与矩阵 W 和尾实体进行计算，判断当前三元组的可信度。ConvE 模型上没什么新颖之处，只不过是比较早的利用卷积神经网络来对 KGE 进行建模。</p>
+<h3 id="capse">CapsE</h3>
+<p>CapsE 采用胶囊神经网络模型，首先把头实体、关系、尾实体表示成 <span class="math inline">\(k×3\)</span> 的矩阵，接下来通过卷积层获取其特征信息，然后对特征信息进行压缩，并进行动态路由，最后计算三元组的可信度。CapsE 只是胶囊网络在 KGE 问题上的简单应用，也没有特别新颖之处。</p>
+<h3 id="kg-bert">KG-BERT</h3>
+<p>KG-BERT 模型利用 BERT 进行 fine-tuning，获取头实体、关系、尾实体信息，然后取 CLS 信息进行二分类，判断当前三元组可信度。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062155966.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p><strong>KGE 除了利用卷积神经网络、胶囊网络、BERT 模型外，也有模型利用深度神经网络、图注意力网络等方法。</strong></p>
+<p>普通的神经网络模型不是特别适合解决KGE问题，不能够对知识图谱中实体的层次性、关系的多样性问题建模，仅仅只是获取实体和关系的深层次交互信息，没有可解释性。但可以多尝试图神经网络在KGE上的应用，比较符合图谱结构。</p>
+<h2 id="双曲几何模型">双曲几何模型</h2>
+<blockquote>
+<p>上面多次提到实体间具有层次性，比如爷爷--父亲--儿子关系，类似于<strong>树状结构</strong>。此时，可以利用双曲空间性质，在双曲空间中对实体的层次性建模，包括Poincare, MuRP等模型。</p>
+</blockquote>
+<h3 id="poincare">Poincare</h3>
+<p>Poincare采用双曲几何中的庞加莱圆盘进行建模，其空间曲率为负。因为庞加莱圆盘性质，能够对实体间的层次性建模，学习图谱间的层次性信息。但Poincare模型没有考虑到关系性质，而且不能够在庞加莱圆盘中进行复杂操作。另外，双曲空间需要黎曼优化方法，建议自行去了解相关数学知识，包括黎曼曲率张量、黎曼流形、黎曼优化等概念。</p>
+<h3 id="murp">MuRP</h3>
+<p>MuRP 相对于 Poincare 而言更加完善，MuRP 同时在双曲空间和欧式空间中建模，结合关系向量，能够处理图谱中所存在的多类型关系。MuRP 首先将实体向量定义在庞加莱圆盘中，接下来将实体映射到欧式空间，并和关系进行操作，然后再将实体映射回庞加莱圆盘中进行距离计算，并用黎曼方法优化。</p>
+<h2 id="旋转模型">旋转模型</h2>
+<blockquote>
+<p>旋转模型<strong>把关系当作头实体和尾实体之间的旋转</strong>，包括RotatE、QuatE、DihEdral等模型。</p>
+</blockquote>
+<h3 id="rotate">RotatE</h3>
+<p>RotatE认为知识库中存在多种类型的关系，如symmetry(e.g., marriage), antisymmetry(e.g., filiation), inversion(e.g., hypernym and hyponym), composition(e.g., my mother's husband is my father)关系，但以往的TransE, RESCAL, ConvE等模型均不能够解决上述关系。因此RotatE提出在复数空间中建模，把关系当作头尾实体之间的旋转，RotatE从理论上证明能够解决对称/反对称、翻转、组合关系。另外，RotatE认为在训练过程中，很多三元组明显是错误的，因此RotatE提出自对抗的负采样方法，让错误样本更加明显，负采样和损失函数公式如下所示。</p>
+<h3 id="quate">QuatE</h3>
+<p>RotatE 是在二维复平面空间中进行操作，那么很自然的可以推广到三维复平面空间中。三维情况下旋转可以利用欧拉角和四元数等方法，但欧拉角存在死锁问题，因此 QuatE 采用四元数进行旋转，四元数可表示为 <span class="math inline">\(Q=a+bi+cj+dk\)</span>。继续推广，可以利用 8 元数进行旋转，但此时复杂度升高，结果并没有提升太多。再往上推广，有 16 元数，但 16 元数的乘法不满足交换律和结合律，因此不再考虑。</p>
+<h3 id="dihedral">DihEdral</h3>
+<p>除了 RotatE 和 QuatE 利用复数空间解决对称/反对称、翻转、组合关系，DihEdral 利用群论知识来解决上述关系。DihEdral 采用二面体群进行旋转，二面体群具有两种性质，即旋转和对称操作。DihEdral 将多个二面体群组成对角矩阵，能够从理论上解决对称/反对称、翻转、组合（Abelian, Non-Abelian）关系。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062210283.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h1 id="知识图谱数据库">知识图谱数据库</h1>
+<p>传统关系数据库（如 MySQL、MongoDB 等）不能体现知识间的层次关系，更不能进行知识推理和知识检索。</p>
+<p><strong>常用的图数据库：Neo4j 和 Apache Jena。</strong></p>
+<h2 id="neo4j">Neo4j</h2>
+<p>Neo4j 是高性能、NoSQL 类型的图数据库，存储过程中将数据表示为节点，数据之间的关系表示为边，节点和边的类型可以是字符串、数字等。Neo4j 能够存储百亿节点，形成巨大的图网络结构，即大规模知识图谱。<strong>Neo4j 能够非常方便的将数据可视化</strong>，看出数据之间的关联关系。</p>
+<h2 id="apache-jena">Apache Jena</h2>
+<p>Apache Jena 是开源的 Java 语义网框架，用于链接数据和构建语义网，可存储 RDF、RDFS 类型数据。</p>
+<p>Apache Jena 提供 TDB、Rule Reasoner、Fuseki 组件，其中 TDB 是 Jena 用于存储 RDF 类型数据的组件，属于存储层面的技术；Rule Reasoner 可进行简单规则推理，支持用户进行自定义推理规则；Fuseki 是 Jena 提供的 SPARQL 服务器，支持 SPARQL 语言进行检索，可在单机和服务器端高效运行。</p>
+<p>因为知识图谱问答需定义很多推理规则，对可视化没有太多要求，所以我们选择 Apache Jena 来存储 RDF 数据。</p>
+<p>接下来是基于 Jena 的实战。需要了解如何进行知识存储和知识检索，具体流程包括：将 RDF 类型数据转换成 TDB 类型数据、配置及启动 Apache Fuseki、利用 SPARQL 从 Apache Jena 中进行知识检索。</p>
+<h3 id="rdf2tdb">RDF2TDB</h3>
+<p>Apache Jena 需要 tdb 类型的数据，所以需要将已得到的 RDF 类型数据转换成 tdb 类型数据，转换方法可通过 Apache Jena 提供的工具进行实现。</p>
+<h3 id="fuseki-配置">Fuseki 配置</h3>
+<p>转换成 TDB 类型数据完成之后，如果想要在网页端进行查看和检索，还需要配置 Apache Fuseki。</p>
+<h3 id="sparql-知识检索">SPARQL 知识检索</h3>
+<p>数据存储成功之后，便能够通过 SPARQL 检索语言从 Apache Jena 数据库之中进行检索答案。比如问句 <strong>“流浪地球的主演有哪些？”</strong> ，转换成如下 SPARQL 查询语句需要经过以下步骤。</p>
+<h4 id="问句理解">问句理解</h4>
+<p>针对用户提问的自然语言问句，首先需要理解其中的深层次语义信息，即获取问句实体和目标属性信息。</p>
+<p>以问句 <strong>“流浪地球的导演是谁？”</strong> 为例： - 实体：流浪地球 - 目标属性：导演 所采用的方法分别是<strong>实体识别</strong>和<strong>属性链接</strong>。</p>
+<h5 id="实体识别">实体识别</h5>
+<p>从问句中提取出实体可以采用以下两种方法： - 构建诸如 <strong>BiLSTM-CRF</strong> 等深度学习模型，然后利用训练好的深度学习模型预测出问句实体。<strong>这种方法能够预测得到训练数据中未出现过的电影名称</strong>，预测准确率保持在 90%以上。缺点是需要构建训练数据，从头开始训练深度学习模型，耗费时间长； - 构建<strong>实体词表</strong>，从问句中提取词表中所包含的实体。词表方法构建快捷方便，缺点是<strong>只能够发现词表中包含的电影实体名称</strong>，无法发现新的电影实体。</p>
+<p>比较推荐的方法是<strong>词表+BiLSTM-CRF</strong> 深度学习模型，但此处为了构建方便，只采用词表方法。词表构建方法是从爬取的数据之中，选出其中的<strong>电影和书籍名称</strong>、<strong>人物名称</strong>加入到词表之中。另外可加上深度学习预测模型提高效果。</p>
+<h5 id="属性链接">属性链接</h5>
+<p>属性链接可以采用以下两种方法： - 构建诸如 CNN 等多分类深度学习模型，然后利用训练好的深度学习模型预测问句的目标属性。 - 构建关键词集合，把问句中所包含的关键词当作问句的目标属性。</p>
+<p>同样，此处问了方便，直接采用关键词方法。可自主加上CNN等多分类预测模型。</p>
+<p>需要注意的是，同一目标属性可以表达成多种含义。比如流浪地球的<strong>评分</strong>是多少？、也可以表达成流浪地球在豆瓣有多少<strong>分数</strong>？，那么此时我们就需要同时考虑<strong>评分</strong>和<strong>分数</strong>关键词。即：<code>rating = (W ('评分') | W ('分数'))</code></p>
+<h4 id="答案推理">答案推理</h4>
+<h5 id="基于规则的答案推理">基于规则的答案推理</h5>
+<p>获取问句的实体和目标属性之后，便可根据规则模版将传统<strong>自然语言问句</strong>转换得到<strong>SPARQL</strong>查询语句，进而从 Apache Jena 数据库之中推理得到问题答案。构建规则模型可利用 Python Refo 库进行构建。</p>
+<p>将问句转换成 SPARQL 查询语句之后，便可从 Apache Jena 之中检索得到问句答案，为提高推理的准确率，还可以使用自定义推理规则进行补充。</p>
+<h5 id="基于表示学习的答案推理">基于表示学习的答案推理</h5>
+<p>通过问句理解模块，能够得到问句的实体和目标属性信息。然后结合基于模版的答案推理方法，能够将问句转换成 SPARQL 查询语句，进而在 Apache Jena 数据库之中推理得到问题答案。<strong>但基于规则的答案推理仅能够处理已定义的规则，不能覆盖问句的所有情况。</strong></p>
+<p>因为不能定义所有规则，所以我们可以采用基于表示学习的答案推理方法，比如知识图谱嵌入中经典的 <strong>Trans 系列方法</strong>。</p>
+<p>这里以 <strong>TransE</strong> 为例进行解释，知识图谱中三元组向量化后可以表示为 <strong>&lt;h, r, t&gt;</strong>，其中头实体为 h、关系为 r、尾实体为 t。TransE 假设实体和关系之间存在，即头实体 h 加上关系 r 的向量信息近似等于尾实体，那么我们便能够通过头实体和关系预测得到尾实体。也就是说，能够通过问句中实体和目标属性信息，预测得到问句答案。</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.staticaly.com/gh/Wang-Ruiyang/pic_bed@main/img/202302062006992.png" alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h2 id="gstore">gStore</h2>
+<p>gStore 是北大团队经过十余年时间研发的原生 RDF 图数据库系统，图数据库当前主流有 RDF 和属性图两种数据模型，具体哪种没有高低之分。但是无论 RDF 还是 RDF 图数据库的查询语言 SPARQL 都是 W3C 定义的事实标准，在进行使用时有规可循。</p>
+<p>gStore所有底层代码都是北大团队自主编写的，当前一共有十几万行代码，这样在自主可控方面是非常有保障的。而且对于鲲鹏/飞腾/海光/兆芯等国产CPU和统信UOS/麒麟国产操作系统都进行适配。本人实际使用时其查询性能相比于国际主流的图数据库也是有明显的性能优势的，这也是来源于学术界的一个优势所在，gStore单机版存储容量为50亿三元组，同时支持分布式部署来解决单机性能瓶颈，但是分布式版本不开源。而且已经在很多行业也进行了落地（可见官网案例）。</p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>知识图谱相关概念</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://wryit.fun/2023/02/06/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">https://wryit.fun/2023/02/06/知识图谱/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>火星架构师</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-02-06</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2023-02-06</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">知识图谱</a></div><div class="post_share"><div class="social-share" data-image="/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/11/Neo4j%E4%BD%BF%E7%94%A8%E8%AF%AD%E6%B3%95-py2neo/" title="Neo4j使用语法+py2neo"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-11</div><div class="title">Neo4j使用语法+py2neo</div></div></a></div><div><a href="/2023/02/06/Neo4j%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" title="Neo4j安装和使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-06</div><div class="title">Neo4j安装和使用</div></div></a></div><div><a href="/2023/02/14/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%B8%B8%E8%A7%81%E7%96%BE%E7%97%85%E6%9E%84%E5%BB%BA/" title="知识图谱常见疾病构建"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-14</div><div class="title">知识图谱常见疾病构建</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author_top is-center"><div class="card-info-avatar"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-status-box"><div class="author-status"><g-emoji class="g-emoji" alias="palm_tree" fallback-src="https://lskypro.acozycotage.net/LightPicture/2022/12/fe1dc0402e623096.jpg">🐟</g-emoji><span>认真摸鱼中</span></div></div></div><div class="author-info__name">火星架构师</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Wang-Ruiyang"><i></i><span>🛴前往小家...</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/437601842" target="_blank" title="B站"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/Wang-Ruiyang" target="_blank" title="github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:wry0818@126.com" target="_blank" title="邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-MAILBOX"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><center>主域名：<br><a href="https://wryit.fun"><b><font color="#5ea6e5">wryit.fun</font></b></a>&nbsp</b></a></center></div><div id="welcome-info"></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">知识图谱介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%B5%8C%E5%85%A5kge"><span class="toc-number">2.</span> <span class="toc-text">知识图谱嵌入（KGE）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BF%BB%E8%AF%91%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">翻译模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transe"><span class="toc-number">2.1.1.</span> <span class="toc-text">TransE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transh"><span class="toc-number">2.1.2.</span> <span class="toc-text">TransH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transr"><span class="toc-number">2.1.3.</span> <span class="toc-text">TransR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">2.1.4.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">双线性模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rescal"><span class="toc-number">2.2.1.</span> <span class="toc-text">RESCAL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dismult"><span class="toc-number">2.2.2.</span> <span class="toc-text">DisMult</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#complex"><span class="toc-number">2.2.3.</span> <span class="toc-text">ComplEx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96-1"><span class="toc-number">2.2.4.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">神经网络模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#conve"><span class="toc-number">2.3.1.</span> <span class="toc-text">ConvE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capse"><span class="toc-number">2.3.2.</span> <span class="toc-text">CapsE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kg-bert"><span class="toc-number">2.3.3.</span> <span class="toc-text">KG-BERT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E6%9B%B2%E5%87%A0%E4%BD%95%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.4.</span> <span class="toc-text">双曲几何模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#poincare"><span class="toc-number">2.4.1.</span> <span class="toc-text">Poincare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#murp"><span class="toc-number">2.4.2.</span> <span class="toc-text">MuRP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.5.</span> <span class="toc-text">旋转模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rotate"><span class="toc-number">2.5.1.</span> <span class="toc-text">RotatE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#quate"><span class="toc-number">2.5.2.</span> <span class="toc-text">QuatE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dihedral"><span class="toc-number">2.5.3.</span> <span class="toc-text">DihEdral</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">知识图谱数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#neo4j"><span class="toc-number">3.1.</span> <span class="toc-text">Neo4j</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apache-jena"><span class="toc-number">3.2.</span> <span class="toc-text">Apache Jena</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rdf2tdb"><span class="toc-number">3.2.1.</span> <span class="toc-text">RDF2TDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fuseki-%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.2.</span> <span class="toc-text">Fuseki 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sparql-%E7%9F%A5%E8%AF%86%E6%A3%80%E7%B4%A2"><span class="toc-number">3.2.3.</span> <span class="toc-text">SPARQL 知识检索</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E5%8F%A5%E7%90%86%E8%A7%A3"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">问句理解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB"><span class="toc-number">3.2.3.1.1.</span> <span class="toc-text">实体识别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E9%93%BE%E6%8E%A5"><span class="toc-number">3.2.3.1.2.</span> <span class="toc-text">属性链接</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AD%94%E6%A1%88%E6%8E%A8%E7%90%86"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">答案推理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%A7%84%E5%88%99%E7%9A%84%E7%AD%94%E6%A1%88%E6%8E%A8%E7%90%86"><span class="toc-number">3.2.3.2.1.</span> <span class="toc-text">基于规则的答案推理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%AD%94%E6%A1%88%E6%8E%A8%E7%90%86"><span class="toc-number">3.2.3.2.2.</span> <span class="toc-text">基于表示学习的答案推理</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gstore"><span class="toc-number">3.3.</span> <span class="toc-text">gStore</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/img/%E5%B0%81%E9%9D%A2%E5%9B%BE2.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By 火星架构师</div><div class="footer_custom_text">In me the tiger sniffs the rose.<p><a target="_blank" href="https://hexo.io/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/cursor.js"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="/js/txmap.js"></script><script async src="//at.alicdn.com/t/c/font_3880675_zk98w3veu9n.js"></script><script async src="/js/fps.js"></script><script async src="//at.alicdn.com/t/c/font_3880675_w3xksiojrkh.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/人工智能/&quot;);" href="javascript:void(0);">人工智能</a><span class="categoryBar-list-count">23</span><span class="categoryBar-list-descr">LeetCode</span></li><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/LeetCode/&quot;);" href="javascript:void(0);">LeetCode</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr">人工智能</span></li><li class="categoryBar-list-item" style="background:url(/img/封面图2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/SpringBoot/&quot;);" href="javascript:void(0);">SpringBoot</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">数据库</span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/数据库/&quot;);" href="javascript:void(0);">数据库</a><span class="categoryBar-list-count">5</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/服务器/&quot;);" href="javascript:void(0);">服务器</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/骚操作/&quot;);" href="javascript:void(0);">骚操作</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
